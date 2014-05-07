@@ -7,8 +7,6 @@ namespace Test;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
-chdir(dirname(__DIR__));
-
 /**
  * Test bootstrap, for setting up autoloading
  */
@@ -18,6 +16,7 @@ class Bootstrap
 
     public static function init()
     {
+        chdir(dirname(__DIR__));
         // Setup the autloader
         static::initAutoloader();
 
