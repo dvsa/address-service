@@ -1,11 +1,12 @@
 <?php
-
+/**
+ * Test bootstrap, for setting up autoloading
+ */
 namespace Test;
 
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
-error_reporting(E_ALL | E_STRICT);
 chdir(dirname(__DIR__));
 
 /**
