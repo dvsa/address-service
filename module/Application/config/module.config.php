@@ -13,7 +13,7 @@ return array(
             'address' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route'    => '/address/:postcode[/]',
+                    'route'    => '/address[/:postcode][/]',
                     'constraints' => array(
                         'postcode' => '[^\/]+'
                     ),
@@ -25,7 +25,7 @@ return array(
             'simple-address' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route'    => '/simple-address/:postcode[/]',
+                    'route'    => '/simple-address[/:postcode][/]',
                     'constraints' => array(
                         'postcode' => '[^\/]+'
                     ),

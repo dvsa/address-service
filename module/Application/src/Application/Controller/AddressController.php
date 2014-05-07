@@ -21,9 +21,27 @@ use Zend\Http\Response;
 class AddressController extends AbstractController
 {
     /**
+     * Get addresses from uprn
+     *
+     * @return Response
+     */
+    public function get($id)
+    {
+        $addressService = $this->getAddressService();
+
+        $address = $addressService->findAddressFromUprn($id);
+
+        if (empty($address)) {
+            return $this->notFoundAction();
+        }
+
+        return $this->respond($address);
+    }
+
+    /**
      * Search for addresses based on postcode
      *
-     * @return mixed|void
+     * @return Response
      */
     public function getList()
     {

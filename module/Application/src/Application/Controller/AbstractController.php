@@ -19,6 +19,19 @@ use Zend\Http\Response;
 abstract class AbstractController extends AbstractRestfulController
 {
     /**
+     * Override not found action
+     *
+     * @return Response
+     */
+    public function notFoundAction()
+    {
+        return $this->respond(
+            array('code' => Response::STATUS_CODE_404, 'message' => 'Not found'),
+            Response::STATUS_CODE_404
+        );
+    }
+
+    /**
      * Respond
      *
      * @param $data

@@ -53,9 +53,29 @@ class AddressControllerIntegrationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Setup the controller with a variable uprn
+     */
+    protected function setUpWithUprn()
+    {
+        $serviceManager = Bootstrap::getServiceManager();
+        $this->controller = new AddressController();
+        $this->request    = new Request();
+        $this->routeMatch = new RouteMatch(array('controller' => 'address'));
+        $this->event      = new MvcEvent();
+        $config = $serviceManager->get('Config');
+        $routerConfig = isset($config['router']) ? $config['router'] : array();
+        $router = HttpRouter::factory($routerConfig);
+
+        $this->event->setRouter($router);
+        $this->event->setRouteMatch($this->routeMatch);
+        $this->controller->setEvent($this->event);
+        $this->controller->setServiceLocator($serviceManager);
+    }
+
+    /**
      * Test getList
      *
-     * @dataProvider dataProvider
+     * @dataProvider dataProviderPostcode
      */
     public function testGetList($postcode, $hasResults)
     {
@@ -70,11 +90,33 @@ class AddressControllerIntegrationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($hasResults, !empty($results));
     }
 
-    public function dataProvider()
+    public function dataProviderPostcode()
     {
         return array(
             array('ls9 6hb', true),
             array('a', false)
+        );
+    }
+
+    /**
+     * Test get
+     *
+     * @dataProvider dataProviderUprm
+     */
+    public function testGet($uprn, $hasResults, $statusCode)
+    {
+        $this->setUpWithUprn();
+
+        $response = $this->controller->get($uprn);
+
+        $this->assertEquals($statusCode, $response->getStatusCode());
+    }
+
+    public function dataProviderUprm()
+    {
+        return array(
+            array('10006614932', true, Response::STATUS_CODE_200),
+            array('a', false, Response::STATUS_CODE_404)
         );
     }
 }
