@@ -28,4 +28,24 @@ abstract class AbstractController extends AbstractRestfulController
     {
         return $this->getResponse()->setStatusCode($status)->setContent(json_encode($data));
     }
+
+    /**
+     * Return the postcode from the route
+     *
+     * @return string
+     */
+    protected function getPostcode()
+    {
+        return $this->params()->fromRoute('postcode');
+    }
+
+    /**
+     * Return an instance of address service
+     *
+     * @return \Application\Service\Address
+     */
+    protected function getAddressService()
+    {
+        return $this->getServiceLocator()->get('entity.service')->create('address');
+    }
 }

@@ -1,53 +1,87 @@
 <?php
 
 /**
- * Address service
- *
- * Interacts with the address entity
+ * Test Address service
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-namespace Application\Service;
+namespace Test\Application\Service;
+
+use Application\Service\Address;
+use PHPUnit_Framework_TestCase;
 
 /**
- * Address service
- *
- * Interacts with the address entity
+ * Test Address service
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-class Address extends AbstractService
+class AddressTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Holds the SQL statements in constants (Helps with unit testing)
+     * test findAddressesFromPostcode
      */
-    const SQL_ADDRESS_LIST_FROM_POSTCODE = 'SELECT * FROM `address_gb` WHERE `postcode` = :postcode';
-
-    /**
-     * Get a list of addresses from a postcode
-     *
-     * @param string $postcode
-     */
-    public function findAddressesFromPostcode($postcode)
+    public function testFindAddressesFromPostcode()
     {
-        $postcode = $this->formatPostcodeForLookup($postcode);
+        $postcode = 'AB1 1ab  ';
 
-        $results = $this->getAdapter()->query(
-            self::SQL_ADDRESS_LIST_FROM_POSTCODE,
-            array('postcode' => $postcode)
+        $result = array(
+            'foo' => 'bar'
         );
 
-        return $results->toArray();
+        $mockResult = $this->getMock('\stdClass', array('toArray'));
+
+        $mockResult->expects($this->once())
+            ->method('toArray')
+            ->will($this->returnValue($result));
+
+        $mockAdapter = $this->getMockBuilder('\Zend\Db\Adapter\Adapter', array('query'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockAdapter->expects($this->once())
+            ->method('query')
+            ->with(Address::SQL_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB1 1AB'))
+            ->will($this->returnValue($mockResult));
+
+        $service = new Address();
+        $service->setAdapter($mockAdapter);
+
+        $this->assertEquals($mockAdapter, $service->getAdapter());
+
+        $this->assertEquals($result, $service->findAddressesFromPostcode($postcode));
     }
 
     /**
-     * Format a postcode for the lookup
-     *
-     * @param string $postcode
-     * @return string
+     * test findSimpleAddressesFromPostcode
      */
-    private function formatPostcodeForLookup($postcode)
+    public function testFindSimpleAddressesFromPostcode()
     {
-        return strtoupper(trim((string)$postcode));
+        $postcode = 'AB1 1ab  ';
+
+        $result = array(
+            'foo' => 'bar'
+        );
+
+        $mockResult = $this->getMock('\stdClass', array('toArray'));
+
+        $mockResult->expects($this->once())
+            ->method('toArray')
+            ->will($this->returnValue($result));
+
+        $mockAdapter = $this->getMockBuilder('\Zend\Db\Adapter\Adapter', array('query'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockAdapter->expects($this->once())
+            ->method('query')
+            ->with(Address::SQL_SIMPLE_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB1 1AB'))
+            ->will($this->returnValue($mockResult));
+
+        $service = new Address();
+        $service->setAdapter($mockAdapter);
+
+        $this->assertEquals($mockAdapter, $service->getAdapter());
+
+        $this->assertEquals($result, $service->findSimpleAddressesFromPostcode($postcode));
     }
 }

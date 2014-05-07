@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Address controller
+ * Simple Address controller
  *
  * Receives GET requests to return lists of addresses
  *
@@ -12,13 +12,13 @@ namespace Application\Controller;
 use Zend\Http\Response;
 
 /**
- * Address controller
+ * Simple Address controller
  *
  * Receives GET requests to return lists of addresses
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-class AddressController extends AbstractController
+class SimpleAddressController extends AbstractController
 {
     /**
      * Search for addresses based on postcode
@@ -31,7 +31,7 @@ class AddressController extends AbstractController
 
         $addressService = $this->getAddressService();
 
-        $addresses = $addressService->findAddressesFromPostcode($postcode);
+        $addresses = $addressService->findSimpleAddressesFromPostcode($postcode);
 
         return $this->respond($addresses);
     }

@@ -1,45 +1,34 @@
 <?php
 
 /**
- * Abstract service
+ * Test Abstract service
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-namespace Application\Service;
+namespace Test\Application\Service;
 
-use Zend\Db\Adapter\AdapterInterface;
+use PHPUnit_Framework_TestCase;
 
 /**
- * Abstract service
+ * Test Abstract service
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-abstract class AbstractService implements ServiceInterface
+class AbstractServiceTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Holds the adapter
-     *
-     * @var AdapterInterface
+     * test adapter getter and setter
      */
-    private $adapter;
-
-    /**
-     * Setter for adapter
-     *
-     * @param AdapterInterface $adapter
-     */
-    public function setAdapter(AdapterInterface $adapter)
+    public function testGetAndSetAdapter()
     {
-        $this->adapter = $adapter;
-    }
+        $mockAdapter = $this->getMockBuilder('\Zend\Db\Adapter\Adapter', array('query'))
+            ->disableOriginalConstructor()
+            ->getMock();
 
-    /**
-     * Getter for adapter
-     *
-     * @return AdapterInterface
-     */
-    public function getAdapter()
-    {
-        return $this->adapter;
+        $service = $this->getMockForAbstractClass('\Application\Service\AbstractService');
+
+        $service->setAdapter($mockAdapter);
+
+        $this->assertEquals($mockAdapter, $service->getAdapter());
     }
 }

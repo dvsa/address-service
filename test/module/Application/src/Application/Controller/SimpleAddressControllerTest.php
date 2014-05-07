@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Test Address controller
+ * Test Simple Address controller
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
@@ -10,11 +10,11 @@ namespace Test\Application\Controller;
 use PHPUnit_Framework_TestCase;
 
 /**
- * Test Address controller
+ * Test Simple Address controller
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-class AddressControllerTest extends PHPUnit_Framework_TestCase
+class SimpleAddressControllerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test getList
@@ -32,9 +32,9 @@ class AddressControllerTest extends PHPUnit_Framework_TestCase
             ->with('postcode')
             ->will($this->returnValue($postcode));
 
-        $mockService = $this->getMock('\stdClass', array('findAddressesFromPostcode'));
+        $mockService = $this->getMock('\stdClass', array('findSimpleAddressesFromPostcode'));
         $mockService->expects($this->once())
-            ->method('findAddressesFromPostcode')
+            ->method('findSimpleAddressesFromPostcode')
             ->with($postcode)
             ->will($this->returnValue($result));
 
@@ -53,7 +53,7 @@ class AddressControllerTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue($mockFactory));
 
         $controller = $this->getMock(
-            '\Application\Controller\AddressController',
+            '\Application\Controller\SimpleAddressController',
             array('params', 'getServiceLocator', 'respond')
         );
 

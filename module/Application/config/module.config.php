@@ -10,7 +10,7 @@
 return array(
     'router' => array(
         'routes' => array(
-            'lookup' => array(
+            'address' => array(
                 'type' => 'segment',
                 'options' => array(
                     'route'    => '/address/:postcode[/]',
@@ -19,6 +19,18 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Address'
+                    )
+                )
+            ),
+            'simple-address' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/simple-address/:postcode[/]',
+                    'constraints' => array(
+                        'postcode' => '[^\/]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'SimpleAddress'
                     )
                 )
             )
@@ -32,7 +44,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Address' => 'Application\Controller\AddressController'
+            'Address' => 'Application\Controller\AddressController',
+            'SimpleAddress' => 'Application\Controller\SimpleAddressController'
         )
     ),
     'view_manager' => array(
