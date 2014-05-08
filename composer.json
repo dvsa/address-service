@@ -1,0 +1,11 @@
+{
+    "name": "olcs/olcs-postcode",
+    "description": "OLCS postcode lookup service",
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.2.*",
+        "phpunit/phpunit": "3.7.*"
+    }
+}
