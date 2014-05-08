@@ -49,7 +49,14 @@ abstract class AbstractController extends AbstractRestfulController
      */
     protected function getPostcode()
     {
-        return $this->params()->fromRoute('postcode');
+        $postcode = $this->params()->fromRoute('postcode');
+
+        if (empty($postcode)) {
+
+            $postcode = $this->params()->fromQuery('postcode');
+        }
+
+        return $postcode;
     }
 
     /**
