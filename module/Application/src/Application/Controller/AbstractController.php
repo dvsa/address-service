@@ -39,7 +39,6 @@ abstract class AbstractController extends AbstractRestfulController
      */
     public function respond($data, $status = Response::STATUS_CODE_200)
     {
-        header('Content-Type: application/json');
         return $this->getResponse()->setStatusCode($status)->setContent(json_encode($data));
     }
 
