@@ -51,11 +51,6 @@ abstract class AbstractController extends AbstractRestfulController
     {
         $postcode = $this->params()->fromRoute('postcode');
 
-        if (empty($postcode)) {
-
-            $postcode = $this->params()->fromQuery('postcode');
-        }
-
         return $postcode;
     }
 
