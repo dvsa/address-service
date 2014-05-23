@@ -51,7 +51,7 @@ abstract class AbstractController extends AbstractRestfulController
     {
         $postcode = $this->params()->fromRoute('postcode');
 
-        return $postcode;
+        return urldecode($postcode);
     }
 
     /**
