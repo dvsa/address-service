@@ -10,24 +10,48 @@
 return array(
     'router' => array(
         'routes' => array(
-            'address' => array(
+            'postcode' => array(
                 'type' => 'segment',
                 'options' => array(
                     'route'    => '/address[/:postcode][/]',
                     'constraints' => array(
-                        'postcode' => '[^\/]+'
+                        'postcode' => '[a-zA-Z][^\/]+'
                     ),
                     'defaults' => array(
                         'controller' => 'Address'
                     )
                 )
             ),
-            'simple-address' => array(
+            'uprn' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/address[/:id][/]',
+                    'constraints' => array(
+                        'id' => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Address'
+                    )
+                )
+            ),
+            'simple-postcode' => array(
                 'type' => 'segment',
                 'options' => array(
                     'route'    => '/simple-address[/:postcode][/]',
                     'constraints' => array(
-                        'postcode' => '[^\/]+'
+                        'postcode' => '[a-zA-Z][^\/]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'SimpleAddress'
+                    )
+                )
+            ),
+            'simple-uprn' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/simple-address[/:postcode][/]',
+                    'constraints' => array(
+                        'id' => '[0-9]+'
                     ),
                     'defaults' => array(
                         'controller' => 'SimpleAddress'
