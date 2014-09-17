@@ -8,10 +8,10 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">../module</directory>
+            <directory suffix=".php">../../module</directory>
             <exclude>
-                <file>../module/Application/Module.php</file>
-                <directory>../module/Application/config</directory>
+                <file>../../module/Application/Module.php</file>
+                <directory>../../module/Application/config</directory>
             </exclude>
         </whitelist>
     </filter>

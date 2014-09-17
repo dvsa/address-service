@@ -156,4 +156,36 @@ class AddressTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($result[0], $service->findSimpleAddressFromUprn($uprn));
     }
+
+    /**
+     * test findSimpleAddressFromUprn withou results
+     */
+    public function testFindSimpleAddressFromUprnWithoutResults()
+    {
+        $uprn = '1';
+
+        $result = array();
+
+        $mockResult = $this->getMock('\stdClass', array('toArray'));
+
+        $mockResult->expects($this->once())
+            ->method('toArray')
+            ->will($this->returnValue($result));
+
+        $mockAdapter = $this->getMockBuilder('\Zend\Db\Adapter\Adapter', array('query'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockAdapter->expects($this->once())
+            ->method('query')
+            ->with(Address::SQL_SIMPLE_ADDRESS_FROM_UPRN, array('uprn' => $uprn))
+            ->will($this->returnValue($mockResult));
+
+        $service = new Address();
+        $service->setAdapter($mockAdapter);
+
+        $this->assertEquals($mockAdapter, $service->getAdapter());
+
+        $this->assertEquals(array(), $service->findSimpleAddressFromUprn($uprn));
+    }
 }
