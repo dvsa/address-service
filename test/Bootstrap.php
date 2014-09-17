@@ -16,12 +16,12 @@ class Bootstrap
 
     public static function init()
     {
-        chdir(__DIR__ . '/../../');
+        chdir(__DIR__ . '/../');
         // Setup the autloader
         static::initAutoloader();
 
         // Grab the application config
-        $config = include __DIR__ . '/../../' . '/config/application.config.php';
+        $config = include __DIR__ . '/../config/application.config.php';
 
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
@@ -36,7 +36,7 @@ class Bootstrap
 
     protected static function initAutoloader()
     {
-        require( __DIR__ . '/../../' . '/init_autoloader.php');
+        require( __DIR__ . '/../init_autoloader.php');
     }
 }
 
