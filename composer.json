@@ -2,14 +2,23 @@
     "name": "olcs/olcs-postcode",
     "description": "OLCS postcode lookup service",
     "type": "library",
-    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "url": "http://satis.inf.mgt.mtpdvsa",
+            "type": "composer"
+        }
+
+    ],
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": "2.2.*"
+        "php": ">=5.4",
+        "zendframework/zendframework": "~2.3.3"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~1.5.3",
-        "phpunit/phpunit": "~4.0.1"
+        "phpunit/phpunit": "^4.0.1"
     },
     "config": {
         "github-oauth.github.com": "ab01b01b13c9454d4e5cbbec3bd14b5f7712e568"
