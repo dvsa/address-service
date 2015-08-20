@@ -40,7 +40,7 @@ class AddressTest extends PHPUnit_Framework_TestCase
 
         $mockAdapter->expects($this->once())
             ->method('query')
-            ->with(Address::SQL_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB1 1AB'))
+            ->with(Address::SQL_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB11AB'))
             ->will($this->returnValue($mockResult));
 
         $service = new Address();
@@ -74,7 +74,7 @@ class AddressTest extends PHPUnit_Framework_TestCase
 
         $mockAdapter->expects($this->once())
             ->method('query')
-            ->with(Address::SQL_SIMPLE_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB1 1AB'))
+            ->with(Address::SQL_SIMPLE_ADDRESS_LIST_FROM_POSTCODE, array('postcode' => 'AB11AB'))
             ->will($this->returnValue($mockResult));
 
         $service = new Address();
