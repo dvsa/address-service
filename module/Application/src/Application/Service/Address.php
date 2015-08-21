@@ -21,7 +21,7 @@ class Address extends AbstractService
     /**
      * Holds the SQL statements in constants (Helps with unit testing)
      */
-    const SQL_ADDRESS_LIST_FROM_POSTCODE = 'SELECT * FROM `address_gb` WHERE `postcode` = :postcode';
+    const SQL_ADDRESS_LIST_FROM_POSTCODE = 'SELECT * FROM `address_gb` WHERE `postcode_trim` = :postcode';
 
     const SQL_SIMPLE_ADDRESS_LIST_FROM_POSTCODE = 'SELECT uprn, coalesce(
         organisation_name, concat(
@@ -42,7 +42,7 @@ class Address extends AbstractService
         )
     ) paon, street_description, nullif(locality_name, \'\') locality, town_name, administritive_area,
     nullif(postcode, \'\') postcode
-    FROM address_gb WHERE postcode = :postcode';
+    FROM address_gb WHERE postcode_trim = :postcode';
 
     const SQL_ADDRESS_FROM_UPRN = 'SELECT * FROM address_gb WHERE uprn = :uprn LIMIT 1';
 
@@ -162,6 +162,6 @@ class Address extends AbstractService
      */
     private function formatPostcodeForLookup($postcode)
     {
-        return strtoupper(trim((string)$postcode));
+        return strtoupper(str_replace(' ', '', (string)$postcode));
     }
 }
