@@ -14,8 +14,11 @@
 return array(
     'db' => array(
         'driver'   => 'Pdo',
+        // Data source mysql:dbname=<DB NAME>;host=<DB HOSTNAME> *Environment specific*
         'dsn'      => 'mysql:dbname=addressbase;host=addressbase.inf.mgt.mtpdvsa',
+        // Database username *Environment specific*
         'username' => 'addressbase',
-        'password' => 'addressbase'
+        // Database password *Environment specific*
+        'password' => 'addressbase',
     )
 );
