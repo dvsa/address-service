@@ -21,9 +21,11 @@ class Address extends AbstractService
     /**
      * Holds the SQL statements in constants (Helps with unit testing)
      */
-    const SQL_ADDRESS_LIST_FROM_POSTCODE = 'SELECT * FROM `gb_readable_vw` WHERE `postcode_trim` = :postcode UNION SELECT * FROM `ni_readable_vw` WHERE `postcode_trim` = :postcode';
+    const SQL_ADDRESS_LIST_FROM_POSTCODE = 'SELECT * FROM `gb_readable_vw` WHERE `postcode_trim` = :postcode UNION
+      SELECT * FROM `ni_readable_vw` WHERE `postcode_trim` = :postcode';
 
-    const SQL_ADDRESS_FROM_UPRN = 'SELECT  * FROM `gb_readable_vw` WHERE `uprn` = :uprn UNION SELECT * FROM `ni_readable_vw` WHERE `uprn` = :uprn LIMIT 1';
+    const SQL_ADDRESS_FROM_UPRN = 'SELECT  * FROM `gb_readable_vw` WHERE `uprn` = :uprn UNION
+      SELECT * FROM `ni_readable_vw` WHERE `uprn` = :uprn LIMIT 1';
 
     /**
      * Find an address from uprn
