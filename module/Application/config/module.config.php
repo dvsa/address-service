@@ -33,30 +33,6 @@ return array(
                         'controller' => 'Address'
                     )
                 )
-            ),
-            'simple-postcode' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route'    => '/simple-address[/:postcode][/]',
-                    'constraints' => array(
-                        'postcode' => '[a-zA-Z][^\/]+'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'SimpleAddress'
-                    )
-                )
-            ),
-            'simple-uprn' => array(
-                'type' => 'segment',
-                'options' => array(
-                    'route'    => '/simple-address[/:postcode][/]',
-                    'constraints' => array(
-                        'id' => '[0-9]+'
-                    ),
-                    'defaults' => array(
-                        'controller' => 'SimpleAddress'
-                    )
-                )
             )
         )
     ),
@@ -68,8 +44,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Address' => 'Application\Controller\AddressController',
-            'SimpleAddress' => 'Application\Controller\SimpleAddressController'
+            'Address' => 'Application\Controller\AddressController'
         )
     ),
     'view_manager' => array(
