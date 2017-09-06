@@ -79,7 +79,6 @@
    <arg value="update"/>
    <arg value="--optimize-autoloader"/>
    <arg value="--no-interaction"/>
-   <arg value="--ignore-platform-reqs"/>
    <arg value="--no-progress"/>
   </exec>
  </target>
@@ -90,7 +89,6 @@
    <arg value="install"/>
    <arg value="--optimize-autoloader"/>
    <arg value="--no-interaction"/>
-   <arg value="--ignore-platform-reqs"/>
    <arg value="--no-progress"/>
   </exec>
  </target>
@@ -102,7 +100,6 @@
    <arg value="--optimize-autoloader"/>
    <arg value="--no-dev"/>
    <arg value="--no-interaction"/>
-   <arg value="--ignore-platform-reqs"/>
    <arg value="--no-progress"/>
   </exec>
  </target>
